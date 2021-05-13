@@ -21,24 +21,23 @@ then
    helpFunction
 fi
 
-
-sudo tee -a /etc/hosts > /dev/null <<EOF
-192.168.64.100 k8s-api
-192.168.64.9 k8s-m1
-192.168.64.10 k8s-w1
-192.168.64.11 k8s-m2
-192.168.64.12 k8s-m3
-EOF
-
 sudo apt update
 sudo apt -y upgrade
 sudo apt -y install haproxy keepalived
 
+# Append custom k8s hosts to /etc/hosts
+grep -f ./hosts /etc/hosts
+if [ $? -eq 1 ]
+then
+   cat ./hosts | sudo tee -a /etc/hosts > /dev/null
+fi
+
+# Read environment-variables
+source ./env-variables
+
 # MASTER | BACKUP
 export STATE=$parameterRole
 export INTERFACE=`ip r | grep default | cut -d " " -f5 -`
-# unique router_id among clusters
-export ROUTER_ID=51
 # from 100 to lower...
 if ["$parameterRole" = "MASTER" ]
 then
@@ -46,15 +45,6 @@ then
 else
   export PRIORITY=99
 fi
-export AUTH_PASS=42
-export APISERVER_VIP=192.168.64.100
-export APISERVER_DEST_PORT=6443
-export HOST1_ID=k8s-m1
-export HOST1_ADDRESS=192.168.64.9
-export HOST2_ID=k8s-m2
-export HOST2_ADDRESS=192.168.64.11
-export HOST3_ID=k8s-m3
-export HOST3_ADDRESS=192.168.64.12
 
 
 sudo tee /etc/keepalived/check_apiserver.sh <<EOF

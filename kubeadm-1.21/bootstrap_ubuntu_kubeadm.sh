@@ -1,13 +1,4 @@
 #!/bin/bash
-
-sudo tee -a /etc/hosts > /dev/null <<EOF
-192.168.64.100 k8s-api
-192.168.64.9 k8s-m1
-192.168.64.10 k8s-w1
-192.168.64.11 k8s-m2
-192.168.64.12 k8s-m3
-EOF
-
 echo Update apt packages
 sudo apt update
 sudo apt -y upgrade
@@ -79,3 +70,10 @@ sudo sed -i '/^\([[:space:]].*\)\[plugins."io.containerd.grpc.v1.cri".containerd
 echo restart containerd
 sudo systemctl restart containerd
 sudo systemctl enable containerd
+
+# Append custom k8s hosts to /etc/hosts
+grep -f ./hosts /etc/hosts
+if [ $? -eq 1 ]
+then
+   cat ./hosts | sudo tee -a /etc/hosts > /dev/null
+fi

@@ -1,0 +1,20 @@
+# unique router_id among clusters
+export ROUTER_ID=51
+
+export AUTH_PASS=42
+
+# Keepalived VIRTUAL IP (change to something not reserved and accessible by the k8s masters)
+export APISERVER_VIP=192.168.64.100
+export APISERVER_NAME=k8s-api
+export APISERVER_DEST_PORT=6443
+
+# k8s masters 
+export HOST1_ID=k8s-m1
+export HOST1_ADDRESS=192.168.64.9
+export HOST2_ID=k8s-m2
+export HOST2_ADDRESS=192.168.64.11
+export HOST3_ID=k8s-m3
+export HOST3_ADDRESS=192.168.64.12
+
+# POD network CIDR (change to something that is available)
+export POD_NETWORK_CIDR=10.244.0.0/16
