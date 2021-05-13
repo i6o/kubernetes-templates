@@ -1,3 +1,4 @@
+#!/bin/bash
 source ./env-variables
 
 sudo systemctl enable kubelet
