@@ -153,3 +153,7 @@ EOF
 
 sudo systemctl enable haproxy --now
 sudo systemctl enable keepalived --now
+
+sudo systemctl restart haproxy
+sudo systemctl restart keepalived
+
