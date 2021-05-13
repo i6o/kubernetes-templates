@@ -3,8 +3,6 @@ source ./env-variables
 
 sudo systemctl enable kubelet
 
-sudo kubeadm config images pull
-
 sudo kubeadm init --pod-network-cidr=${POD_NETWORK_CIDR} --control-plane-endpoint "${APISERVER_NAME}:${APISERVER_DEST_PORT}" --upload-certs
 
 mkdir -p $HOME/.kube
