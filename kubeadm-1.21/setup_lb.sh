@@ -26,7 +26,7 @@ sudo apt -y upgrade
 sudo apt -y install haproxy keepalived
 
 # Append custom k8s hosts to /etc/hosts
-grep -f ./hosts /etc/hosts
+grep -qFf ./hosts /etc/hosts
 if [ $? -eq 1 ]
 then
    cat ./hosts | sudo tee -a /etc/hosts > /dev/null

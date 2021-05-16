@@ -49,3 +49,12 @@ And wait that the master gets *READY* state
 Follow the instructions of the master one to bootstrap additional master (at least 2 more) and worker (at least 3 more) nodes.
 
 ... and you are DONE!
+
+
+# BACKUP ETCD DATABASE
+
+To take a backup your existing etcd database and its content, run this script on any of your master nodes:
+
+> ./backup_etcd.sh
+
+It wise to do a `crontab` job of this to regurarly make backups of etcd. Also remember to store the backups to some external location, and not to keep them at kubernetes master nodes as if you loose the node totally, you don't have the etcd backups neither.
