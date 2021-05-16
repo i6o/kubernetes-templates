@@ -53,7 +53,7 @@ Follow the instructions of the master one to bootstrap additional master (at lea
 
 # BACKUP ETCD DATABASE
 
-To take a backup your existing etcd database and its content, run this script on any of your master nodes:
+To take a backup of your existing etcd database and its content, run this script on any of your master nodes:
 
 > ./backup_etcd.sh
 
