@@ -4,8 +4,10 @@
 > https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
 ## 2. Add prometheus repositories
-> helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-> helm repo update
+```
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+```
 
 ## 3. Install Prometheus
 > helm install <name> prometheus-community/kube-prometheus-stack
