@@ -22,7 +22,7 @@ Alternatively, if you would like to customize the installation configuration, ta
 
 Edit the override.yaml to meet your needs and use the file in install process.
 
-> helm install *[release name]* prometheus-community/kube-prometheus-stack -n monitoring -f ./override.yml
+> helm install *[release name]* prometheus-community/kube-prometheus-stack -n monitoring -f ./override.yaml
 
 ## 4. Uninstalling Prometheus
 
