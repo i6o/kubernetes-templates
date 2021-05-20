@@ -48,6 +48,21 @@ And wait that the master gets *READY* state
 
 Follow the instructions of the master one to bootstrap additional master (at least 2 more) and worker (at least 3 more) nodes.
 
+
+**If the token expires, you need to create a new token for joining workers to the cluster.** To do that run following commands at one of the masters:
+
+To list any existing valid tokens:
+> sudo kubeadm token list
+
+To create a new token
+> sudo kubeadm token create
+
+Get the CA-cert sha256 hashcode
+> openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
+
+Then run the join command on a new worker node by replacing the correct values with the ones you did get from previous commands.
+> kubeadm join --discovery-token abcdef.1234567890abcdef --discovery-token-ca-cert-hash sha256:1234..cdef 1.2.3.4:6443
+
 ... and you are DONE!
 
 
