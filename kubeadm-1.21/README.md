@@ -66,10 +66,10 @@ Then run the join command on a new worker node by replacing the correct values w
 ... and you are DONE!
 
 
-# BACKUP ETCD DATABASE
+# Backup your Etcd database
 
-To take a backup of your existing etcd database and its content, run this script on any of your master nodes:
+To take a backup of your etcd database and its content, run this script on any of your master nodes:
 
 > ./backup_etcd.sh
 
-It wise to do a `crontab` job of this to regurarly make backups of etcd. Also remember to store the backups to some external location, and not to keep them at kubernetes master nodes as if you loose the node totally, you don't have the etcd backups neither.
+It is wise to do a `crontab` job of this to regurarly make backups of etcd. Also remember to store the backups to some external location, and not to keep them at kubernetes master nodes as if you loose the node totally, you don't have the etcd backups neither.
